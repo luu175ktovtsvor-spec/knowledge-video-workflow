@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "layer_contract_version": 1,
+  "status": "planned",
+  "style_id": "fixed-2d-collage-knowledge-v1",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration_frames": 510
+  },
+  "narration": {
+      "mode": "provided-audio",
+    "audio_path": "public/media/demo/audio/narration.wav",
+    "captions_path": "public/media/demo/captions/captions.json"
+  },
+  "assets": [
+    {
+      "id": "bg-warehouse-office",
+      "role": "background",
+      "default_layer": "stage",
+      "source_ref": "public/media/house-components/backgrounds/warehouse-office.png",
+      "alpha_required": false
+    },
+    {
+      "id": "bg-service-shop",
+      "role": "background",
+      "default_layer": "stage",
+      "source_ref": "public/media/house-components/backgrounds/service-shop.png",
+      "alpha_required": false
+    },
+    {
+      "id": "otter-explain",
+      "role": "character",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/characters/otter-narrator/explain-right.png",
+      "alpha_required": true
+    },
+    {
+      "id": "otter-celebrate",
+      "role": "character",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/characters/otter-narrator/celebrate.png",
+      "alpha_required": true
+    },
+    {
+      "id": "beaver-lift",
+      "role": "character",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/characters/beaver-operator/lift-empty.png",
+      "alpha_required": true
+    },
+    {
+      "id": "beaver-handoff",
+      "role": "character",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/characters/beaver-operator/handoff-empty.png",
+      "alpha_required": true
+    },
+    {
+      "id": "capybara-receive",
+      "role": "character",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/characters/capybara-customer/receive-empty.png",
+      "alpha_required": true
+    },
+    {
+      "id": "module-service-counter",
+      "role": "module",
+      "default_layer": "occluder",
+      "source_ref": "public/media/house-components/modules/shop-service/service-counter.png",
+      "alpha_required": true
+    },
+    {
+      "id": "prop-parcel",
+      "role": "prop",
+      "default_layer": "subjectFront",
+      "source_ref": "public/media/house-components/props/service-operations/parcel-closed.png",
+      "alpha_required": true
+    }
+  ],
+  "beats": [
+    {
+      "id": "beat-title",
+      "from_frame": 0,
+      "duration_frames": 60,
+      "kind": "title-card",
+      "stage_mode": null,
+      "narration_anchor": "先看对象之间发生了什么",
+      "viewer_task": "建立关系驱动的画面原则",
+      "background_id": null,
+      "composition": "black-red-typewriter-with-silhouette",
+      "subject_states": [],
+      "prop_ids": [],
+      "code_graphics": [],
+      "title_text": "变化必须发生在关系里",
+      "subtitle": "",
+      "internal_events": [
+        {
+          "id": "title-reveal",
+          "at_frame": 8,
+          "action": "crop-reveal",
+          "target": "title_text",
+          "result": "标题和角色剪影完整出现"
+        }
+      ],
+      "transition_out": "hard-cut",
+      "intentional_hold_reason": ""
+    },
+    {
+      "id": "beat-problem",
+      "from_frame": 60,
+      "duration_frames": 150,
+      "kind": "scene",
+      "stage_mode": "scene",
+      "narration_anchor": "人物和道具进入同一个问题关系",
+      "viewer_task": "看到搬运、阻塞和思考对象",
+      "background_id": "bg-warehouse-office",
+      "composition": "two-characters-counter-prop-contact",
+      "visual_contract": {
+        "start_state": "执行者与讲解者面对尚未交付的包裹",
+        "visible_action": "包裹移动到服务柜台的交接位置",
+        "end_state": "包裹完成接触，服务关系成立",
+        "essential_components": ["otter-explain", "beaver-lift", "module-service-counter", "prop-parcel"],
+        "layout_mode": "stage-subject-object",
+        "primary_component": "prop-parcel",
+        "focus_order": ["prop-parcel", "beaver-lift", "otter-explain"],
+        "protected_regions": ["人物面部", "执行者双手与包裹接触区", "字幕区"],
+        "occlusion_reason": "服务柜台只遮住人物下半身，保留脸、手和包裹接触点",
+        "crop_intent": "none",
+        "action_axis": "right-to-left",
+        "component_bindings": {
+          "otter-explain": {"role": "context", "phrase": "讲解人物与道具的关系", "motion": "slide-fade"},
+          "beaver-lift": {"role": "subject", "phrase": "执行者搬运", "motion": "slide-fade"},
+          "module-service-counter": {"role": "context", "phrase": "服务柜台", "motion": "hold"},
+          "prop-parcel": {"role": "action-object", "phrase": "包裹移动到交接位置", "motion": "prop-contact"}
+        }
+      },
+      "subject_states": [
+        {"asset_id": "otter-explain", "state": "explain", "placement": "left-baseline"},
+        {"asset_id": "beaver-lift", "state": "lift-empty", "placement": "center-baseline"}
+      ],
+      "prop_ids": ["module-service-counter", "prop-parcel"],
+      "code_graphics": [],
+      "title_text": "",
+      "subtitle": "人物、道具和结果必须在同一拍里发生关系",
+      "internal_events": [
+        {"id": "counter-enter", "at_frame": 5, "action": "slide-fade", "target": "module-service-counter", "result": "服务空间建立"},
+        {"id": "beaver-enter", "at_frame": 28, "action": "slide-fade", "target": "beaver-lift", "result": "执行者进入"},
+        {"id": "parcel-contact", "at_frame": 36, "action": "prop-contact", "target": "prop-parcel", "result": "包裹移动到人物接触区"}
+      ],
+      "transition_out": "cross-fade",
+      "intentional_hold_reason": ""
+    },
+    {
+      "id": "beat-diagram",
+      "from_frame": 210,
+      "duration_frames": 150,
+      "kind": "scene",
+      "stage_mode": "diagram",
+      "narration_anchor": "抽象机制进入图解舞台",
+      "viewer_task": "看清旧状态、替代状态和证据面板",
+      "background_id": null,
+      "composition": "character-left-phone-comparison-right",
+      "visual_contract": {
+        "start_state": "旧状态与核对依据并列出现",
+        "visible_action": "新状态在同一位置替换旧状态",
+        "end_state": "替换结果和证据形成完整流程",
+        "essential_components": ["otter-explain", "evidence-panel", "phone-panel", "state-replace", "process-flow"],
+        "layout_mode": "diagram-focus",
+        "primary_component": "state-replace",
+        "focus_order": ["state-replace", "evidence-panel", "process-flow"],
+        "protected_regions": ["新旧状态替换区", "证据面板数字", "字幕区"],
+        "occlusion_reason": "图解元素不相互遮挡，使用间距和对比建立主次",
+        "crop_intent": "none",
+        "action_axis": "left-to-right",
+        "component_bindings": {
+          "otter-explain": {"role": "context", "phrase": "讲解状态变化", "motion": "slide-fade"},
+          "evidence-panel": {"role": "evidence", "phrase": "核对依据", "motion": "pop-scale"},
+          "phone-panel": {"role": "action-object", "phrase": "旧状态载体", "motion": "slide-fade"},
+          "state-replace": {"role": "result", "phrase": "新状态替换旧状态", "motion": "state-replace"},
+          "process-flow": {"role": "evidence", "phrase": "形成完整流程", "motion": "group-build"}
+        }
+      },
+      "subject_states": [
+        {"asset_id": "otter-explain", "state": "explain", "placement": "left-baseline"}
+      ],
+      "prop_ids": [],
+      "code_graphics": ["evidence-panel", "phone-panel", "state-replace", "process-flow"],
+      "title_text": "",
+      "subtitle": "表格、手机和流程进入图解舞台，不烤进生成图",
+      "internal_events": [
+        {"id": "old-state-enter", "at_frame": 12, "action": "slide-fade", "target": "phone-old", "result": "旧状态建立"},
+        {"id": "evidence-enter", "at_frame": 40, "action": "pop-scale", "target": "evidence-panel", "result": "可核对信息出现"},
+        {"id": "phone-replace", "at_frame": 72, "action": "state-replace", "target": "phone-old+phone-new", "result": "新状态同位替换旧状态"},
+        {"id": "process-complete", "at_frame": 104, "action": "crop-reveal", "target": "process-flow", "result": "因果方向完成"}
+      ],
+      "transition_out": "foreground-wipe",
+      "intentional_hold_reason": ""
+    },
+    {
+      "id": "beat-result",
+      "from_frame": 360,
+      "duration_frames": 150,
+      "kind": "scene",
+      "stage_mode": "scene",
+      "narration_anchor": "交接完成以后结果才出现",
+      "viewer_task": "看到姿态替换、交接和收益落位",
+      "background_id": "bg-service-shop",
+      "composition": "handoff-between-characters-with-result",
+      "visual_contract": {
+        "start_state": "交接双方位于服务柜台两侧",
+        "visible_action": "包裹从执行者移动到接收者",
+        "end_state": "接收者拿到包裹，交接完成",
+        "essential_components": ["otter-celebrate", "beaver-handoff", "capybara-receive", "module-service-counter", "prop-parcel"],
+        "layout_mode": "stage-two-party",
+        "primary_component": "prop-parcel",
+        "focus_order": ["prop-parcel", "beaver-handoff", "capybara-receive", "otter-celebrate"],
+        "protected_regions": ["交接双方面部", "双手与包裹交接区", "字幕区"],
+        "occlusion_reason": "柜台表达真实前后关系，不遮住包裹移动路径和接收者双手",
+        "crop_intent": "none",
+        "action_axis": "left-to-right",
+        "component_bindings": {
+          "otter-celebrate": {"role": "result", "phrase": "交接完成后的反应", "motion": "pose-swap"},
+          "beaver-handoff": {"role": "subject", "phrase": "执行者交出包裹", "motion": "slide-fade"},
+          "capybara-receive": {"role": "result", "phrase": "接收者拿到包裹", "motion": "slide-fade"},
+          "module-service-counter": {"role": "context", "phrase": "交接柜台", "motion": "hold"},
+          "prop-parcel": {"role": "action-object", "phrase": "包裹从一方移向另一方", "motion": "prop-contact"}
+        }
+      },
+      "subject_states": [
+        {"asset_id": "otter-celebrate", "state": "pose-swap-result", "placement": "far-left-baseline"},
+        {"asset_id": "beaver-handoff", "state": "handoff-empty", "placement": "center-left-baseline"},
+        {"asset_id": "capybara-receive", "state": "receive-empty", "placement": "center-right-baseline"}
+      ],
+      "prop_ids": ["module-service-counter", "prop-parcel"],
+      "code_graphics": [],
+      "title_text": "",
+      "subtitle": "姿态替换、道具接触和结果落位共同完成叙事",
+      "internal_events": [
+        {"id": "characters-enter", "at_frame": 12, "action": "slide-fade", "target": "beaver-handoff+capybara-receive", "result": "交接双方建立"},
+        {"id": "parcel-handoff", "at_frame": 38, "action": "prop-contact", "target": "prop-parcel", "result": "包裹从一方移动到另一方"},
+        {"id": "pose-result", "at_frame": 78, "action": "pose-swap", "target": "otter-celebrate", "result": "讲解姿态换成结果姿态"},
+        {"id": "wipe-out", "at_frame": 136, "action": "foreground-wipe", "target": "foreground", "result": "前景遮挡完成交接"}
+      ],
+      "transition_out": "foreground-wipe",
+      "intentional_hold_reason": ""
+    }
+  ]
+}

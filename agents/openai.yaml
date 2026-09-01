@@ -1,0 +1,4 @@
+interface:
+  display_name: "二维拼贴知识视频工作流"
+  short_description: "把知识文案做成可编辑的二维拼贴动画视频"
+  default_prompt: "Use $collage-knowledge-video-workflow to research an authorized reference when needed, lock the script and narration, build semantic visual beats and transparent assets, choose Remotion or HyperFrames, and deliver a human-reviewed knowledge video."

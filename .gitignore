@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+dist/
+out/
+review/
+verification.json
+public/media/project/
+*.log
+__pycache__/
+*.pyc
+cookies.txt
+*.cookies.txt
+reference-media/
+downloads/
